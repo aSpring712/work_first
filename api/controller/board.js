@@ -32,19 +32,19 @@ module.exports = {
     },
 
     // 게시글 상세
-    // async detail(req, res) {
-    //     let sql = 'SELECT * FROM boards where id = ?';
-    //     let params = [req.params.id]
-    //     let result = await db.query({ sql, params })
-    //     console.log(result)
-    //     res.send({ board: result.rows })
-    // }
+    async detail(req, res) {
+        let sql = `SELECT * FROM boards where id = ?`;
+        let params = [req.params.id]
+        let result = await db.query({ sql, params })
+        console.log(result)
+        res.send({ board: result.rows })
+    },
 
     // 게시글 삭제
     async delete(req, res) {
-        const id = req.query
-        let sql = 'DELETE FROM boards WHERE id = ?';
-        let result = await db.query({ sql, id })
+        let sql = `DELETE FROM boards WHERE id = ?`;
+        let params = [req.query]
+        let result = await db.query({ sql, params })
         if (result) {
             res.send({ result: "OK" })
         } else {
