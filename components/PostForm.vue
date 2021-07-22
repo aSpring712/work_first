@@ -9,7 +9,14 @@
           clearable
           label="오늘은 어떤 일이 있었나요?"
         />
-        <v-btn type="submit" color="green" absolute right>등록</v-btn>
+        <v-file-input
+         v-model="img"
+          show-size
+          counter
+          multiple
+          label="File input"
+        />
+        <v-btn type="submit" color="green" absolute right>등록</v-btn>        
         <v-btn type="button">이미지 업로드</v-btn>
       </v-form>
     </v-container>
@@ -21,6 +28,7 @@ export default {
   data() {
     return {
         content: "",
+        img: "",
     };
   },
   methods: {
@@ -33,7 +41,7 @@ export default {
         .then(() => {
             this.content = "";
             alert('게시글 등록 성공!');
-            // 새로고침 없이 반영되도록 하려면?
+            // 새로고침 없이 반영되도록
             this.$emit('updateList');
         })
         .catch(() => {

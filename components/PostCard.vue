@@ -52,7 +52,7 @@
         });
       },
       onEditPost() {
-        this.$router.push('board/' + this.board.id);
+        this.$router.push('/update/' + this.board.id);
       }
     },
     mounted() {

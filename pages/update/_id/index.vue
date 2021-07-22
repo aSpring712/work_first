@@ -1,37 +1,17 @@
 <template>
     <v-card style="margin-bottom: 20px">
-        <div v-if="board">
-            <PostCard :board="board"/>
-        </div>
-    <!-- <div v-if="board">
-    <v-card>
-      <v-img />
-      <v-card-title>
-        <h4>
-          {{board.content}}
-        </h4>
-      </v-card-title>
-      <v-card-text>
-        <div>
-          <div>작성자 : {{board.writer}}</div>
-        </div>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn text color="orange">
-          <v-icon>mdi-twitter-retweet</v-icon>
-        </v-btn>
-        <v-btn text color="orange">
-          <v-icon>mdi-heart-outline</v-icon>
-        </v-btn>
-        <v-btn text color="orange">
-          <v-icon>mdi-comment-outline</v-icon>
-        </v-btn>
-        <v-btn text color="orange" @click="onEditPost">수정</v-btn>
-        <v-btn text color="red" @click="onRemovePost">삭제</v-btn>
-        <div>{{board.regdate}}</div>
-      </v-card-actions>
-    </v-card>
-  </div> -->
+        <v-container v-if="board">
+            <v-form ref="form" @submit.prevent="onSubmitForm">
+                <v-textarea
+                v-model="board.content"
+                outlined
+                auto-grow
+                clearable
+                />
+                <v-btn type="submit" color="green">수정완료</v-btn>
+                <v-btn color="red" @click="boardDelete" absolute right>삭제</v-btn>
+            </v-form>
+    </v-container>
     <div v-else>
         해당하는 아이디의 게시물이 없습니다.
     <v-btn @click="toTheBack">Back</v-btn>
@@ -70,7 +50,7 @@ export default {
                 console.log(res)       
                 if(res.data.result == "OK"){         
                     alert('게시글 수정 완료')
-                    this.$router.push({path: "/"})
+                    this.$router.push({path: "/board/" + this.id});
                 }else{
                     alert('게시글 수정 실패')
                 }
