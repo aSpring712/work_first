@@ -1,7 +1,9 @@
 const express = require('express');
-const app = express();
 const userRouter = require('./routes/user.js');
 const boardRouter = require('./routes/board.js');
+const app = express();
+
+app.post('/')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

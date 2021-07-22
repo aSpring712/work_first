@@ -9,15 +9,14 @@
           clearable
           label="오늘은 어떤 일이 있었나요?"
         />
-        <v-file-input
-         v-model="img"
-          show-size
-          counter
-          multiple
-          label="File input"
-        />
-        <v-btn type="submit" color="green" absolute right>등록</v-btn>        
-        <v-btn type="button">이미지 업로드</v-btn>
+
+        <div class="filesForm">
+          <input type="file" @change="handleFileChange" id="filesSelect" multiple accept="image/*" />
+          <v-btn type="submit" color="green" absolute right>등록</v-btn>
+        </div>
+        <div class="imgBoard" v-if="files.length > 0">
+          <img :src="'{{filePath}}'">
+        </div>
       </v-form>
     </v-container>
   </v-card>
@@ -28,7 +27,8 @@ export default {
   data() {
     return {
         content: "",
-        img: "",
+        filesPreview: [],
+        files: [],
     };
   },
   methods: {
@@ -49,6 +49,13 @@ export default {
         });
       }
     },
+    handleFileChange(e) {
+      console.log(e.target.files)
+
+      const file = e.target.files;
+      
+    }
+
   },
 };
 </script>
