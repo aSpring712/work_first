@@ -3,11 +3,11 @@
     <v-container>
       <v-card style="margin-bottom: 20px">
         <v-container>
-          <v-subheader>내 프로필</v-subheader>
+          <v-subheader>현재 프로필 : aSpring</v-subheader>
           <v-form v-model="valid" @submit.prevent="onChangeNickname">
             <v-text-field
               v-model="nickname"
-              label="닉네임"
+              label="변경할 닉네임"
               :rules="nicknameRules"
               required
             />
@@ -38,9 +38,7 @@
     },
     methods: {
       onChangeNickname() {
-        // this.$store.dispatch('users/changeNickname', {
-        //   nickname: this.nickname,
-        // });
+        
       },
     },
     head() {

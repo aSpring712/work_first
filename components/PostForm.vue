@@ -33,7 +33,8 @@ export default {
         .then(() => {
             this.content = "";
             alert('게시글 등록 성공!');
-            this.$router.push({path:"/"});
+            // 새로고침 없이 반영되도록 하려면?
+            this.$emit('updateList');
         })
         .catch(() => {
           alert('게시글 등록 실패!');

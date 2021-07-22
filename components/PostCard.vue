@@ -52,7 +52,7 @@
         });
       },
       onEditPost() {
-        this.$axios.get('board/' + this.board.id);
+        this.$router.push('board/' + this.board.id);
       }
     },
     mounted() {

@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <post-form />
+    <post-form @updateList="updateMethods" />
     <div>
-      <PostCard v-for="board in boards" :key="board.id" :board="board" @updateList="updateMethods"/>
+      <PostCard v-for="board in boards" :key="board.id" :board="board" @updateList="updateMethods" />
     </div>
   </v-container>
 </template>

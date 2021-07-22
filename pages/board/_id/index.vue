@@ -50,10 +50,9 @@ export default {
                 console.log(res)       
                 if(res.data.result == "OK"){         
                     alert('게시글 수정 완료')
-                    this.$router.push({path: "/board/" + this.id})
+                    this.$router.push({path: "/"})
                 }else{
                     alert('게시글 수정 실패')
-
                 }
             })
         },

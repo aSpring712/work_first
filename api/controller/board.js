@@ -25,13 +25,13 @@ module.exports = {
 
     // 게시글 목록
     async list(req, res) {
-        let sql = 'SELECT * FROM boards';
+        let sql = 'SELECT * FROM boards ORDER BY id DESC';
         let result = await db.query({ sql })
             // console.log(result)
         res.send({ boards: result.rows })
     },
 
-    // 게시글 상세
+    // 게시글 상세 -> 게시글 1개만 보기
     async detail(req, res) {
         // console.log(req.params.id);
         let sql = `SELECT * FROM boards where id = ?`;
