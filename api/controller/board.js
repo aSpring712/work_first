@@ -27,12 +27,13 @@ module.exports = {
     async list(req, res) {
         let sql = 'SELECT * FROM boards';
         let result = await db.query({ sql })
-        console.log(result)
+            // console.log(result)
         res.send({ boards: result.rows })
     },
 
     // 게시글 상세
     async detail(req, res) {
+        // console.log(req.params.id);
         let sql = `SELECT * FROM boards where id = ?`;
         let params = [req.params.id]
         let result = await db.query({ sql, params })
@@ -42,8 +43,9 @@ module.exports = {
 
     // 게시글 삭제
     async delete(req, res) {
+        let id = req.params.id
         let sql = `DELETE FROM boards WHERE id = ?`;
-        let params = [req.query]
+        let params = [id]
         let result = await db.query({ sql, params })
         if (result) {
             res.send({ result: "OK" })
@@ -53,5 +55,14 @@ module.exports = {
     },
 
     // 게시글 수정
-
+    async update(req, res) {
+        let sql = 'UPDATE boards SET content = ? where id = ?';
+        let params = [req.body.content, req.body.id]
+        let result = await db.query({ sql, params })
+        if (result) {
+            res.send({ result: "OK" })
+        } else {
+            res.send({ result: "FAIL" })
+        }
+    }
 }

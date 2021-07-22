@@ -33,6 +33,7 @@ export default {
         .then(() => {
             this.content = "";
             alert('게시글 등록 성공!');
+            this.$router.push({path:"/"});
         })
         .catch(() => {
           alert('게시글 등록 실패!');

@@ -40,20 +40,25 @@
     },
     methods: {
       onRemovePost() {
-        this.$axios.delete('board/' + this.id).then(res => {
+        this.$axios.delete('board/' + this.board.id).then(res => {
           console.log(res)
           if(res.status === 200) {
             alert('게시글 삭제 완료!');
             this.$router.push({path: "/"});
+            this.$emit('updateList');
           } else {
             alert('게시글 삭제 실패!');
           }
         });
       },
       onEditPost() {
-
+        this.$axios.get('board/' + this.board.id);
       }
     },
+    mounted() {
+      console.log("this.board");
+      console.log(this.board);
+    }
   };
 </script>
 
