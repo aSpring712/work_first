@@ -1,5 +1,6 @@
 const db = require('../db');
 const bcrypt = require('bcrypt');
+const { LayoutPlugin } = require('bootstrap-vue');
 
 module.exports = {
     // 회원가입
@@ -10,7 +11,7 @@ module.exports = {
         const { email, password, nickname } = req.body.joinInfo
 
         //bcryt 작업
-        let cryptedPassword = await bcrypt.hash(password, 12);
+        let cryptedPassword = await bcrypt.hash(password, 12); // salt -> 높일 수록 좋지만 복잡해지기 때문에 느려짐
 
         let sql = `
             INSERT INTO users (email, password, nick_name) VALUES (?, ?, ?)
@@ -24,5 +25,30 @@ module.exports = {
         } else {
             res.send({ result: "FAIL" })
         }
-    }
+    },
+
+    // 로그인
+    async login(req, res) {
+
+        // const email = req.body.email;
+        // const password = req.body.password;
+
+        // let sql = `
+        //     SELECT * FROM users where email = ? and password = ?
+        // `;
+
+        // let params = [email, password]
+
+        // let result = await db.query({ sql, params })
+        // if (result) {
+        //     res.send({result:"OK"})
+        // } else {
+        //     res.send({result: "FAIL"})
+        // }
+    },
+
+    // 로그아웃
+    async logout(req, res) {
+
+    },
 }

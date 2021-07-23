@@ -6,8 +6,13 @@
         <h4>
           <nuxt-link :to="'/board/' + board.id">{{board.content}}</nuxt-link>
         </h4>
+        <!-- <div v-for="image_url in board.imege_url" :key="image_url" style="display: inline-block"> -->
+        <!-- </div> -->
       </v-card-title>
       <v-card-text>
+        <div v-for="board in boards" :key="board" style="display: inline-block">
+            <img v-if="board.file_name" :src="'/uploads/' + board.file_name" ale="image" />
+        </div>
         <div>
           <div>작성자 : {{board.writer}}</div>
         </div>

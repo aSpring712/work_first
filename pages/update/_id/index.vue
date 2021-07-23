@@ -1,4 +1,5 @@
 <template>
+ <v-container>
     <v-card style="margin-bottom: 20px">
         <v-container v-if="board">
             <v-form ref="form" @submit.prevent="onSubmitForm">
@@ -8,6 +9,12 @@
                 auto-grow
                 clearable
                 />
+                
+            <div v-for="b in board" :key="b">
+                <img v-if="b" :src="'/uploads/'+b" />
+                <!-- <button @click="onRemoveImageIndex(u)" type="button">제거</button> -->
+            </div>
+                
                 <v-btn type="submit" color="green">수정완료</v-btn>
                 <v-btn color="red" @click="boardDelete" absolute right>삭제</v-btn>
             </v-form>
@@ -17,6 +24,7 @@
     <v-btn @click="toTheBack">Back</v-btn>
     </div>
   </v-card>
+ </v-container>
 </template>
 
 <script>
@@ -27,6 +35,7 @@ export default {
                 id:'',
                 content: '',
                 writer: '',
+                img_name: null,
             },
             id:'',
         };

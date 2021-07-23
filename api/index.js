@@ -8,6 +8,7 @@ app.post('/')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/', express.static('static/uploads'))
 app.use('/user', userRouter);
 app.use('/board', boardRouter);
 

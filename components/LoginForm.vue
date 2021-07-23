@@ -54,20 +54,29 @@
     },
     methods: {
       onSubmitForm() {
-        if (this.$refs.form.validate()) {
-          // this.$store.dispatch('users/logIn', {
-          //   email: this.email,
-          //   password: this.password,
-          // });
-        }
+        // if (this.$refs.form.validate()) {
+        //   this.$axios.get('user/login', {
+        //     email: this.email,
+        //     password: this.password,
+        //   })
+        //   .then(() => {
+        //     alert('로그인 성공');
+        //     this.$router.push({
+        //       path: '/',
+        //     });
+        //   })
+        //   .catch(() => {
+        //     alert('로그인 실패');
+        //   });
+        // }
       },
       onLogOut() {
         // this.$store.dispatch('users/logOut');
+        // this.$axios.get('user/logout');
       },
     },
   };
 </script>
 
 <style>
-
 </style>

@@ -1,4 +1,5 @@
 <template>
+ <v-container>
     <v-card style="margin-bottom: 20px">
         <div v-if="board">
             <PostCard :board="board"/>
@@ -37,6 +38,7 @@
     <v-btn @click="toTheBack">Back</v-btn>
     </div>
   </v-card>
+ </v-container>
 </template>
 
 <script>
