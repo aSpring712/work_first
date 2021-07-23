@@ -12,7 +12,11 @@
     data() {
       return {
         name: 'Nuxt.js',
-        boards: [],
+        boards: [{
+                id:'',
+                content: '',
+                writer: '',
+            }],
       };
     },
     methods: {

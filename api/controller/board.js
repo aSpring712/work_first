@@ -50,7 +50,12 @@ module.exports = {
                 ORDER BY b.id DESC`;
         let result = await db.query({ sql })
 
+        console.log("-----result-----------")
+        console.log(result)
+        console.log("------result.row----------")
         console.log(result.rows)
+        console.log("------result.rows[0]----------")
+        console.log(result.rows[0])
 
         // if (result.rows > 0) {
         //     let imgs = result.rows.imgs;
@@ -64,9 +69,18 @@ module.exports = {
     // 게시글 상세 -> 게시글 1개만 보기
     async detail(req, res) {
         // console.log(req.params.id);
-        let sql = `SELECT * FROM boards AS b 
-            LEFT JOIN files AS f ON b.id = f.b_id
-            WHERE b.id = ?`;
+        let sql = `
+            SELECT 
+                b.writer, b.id, b.content, b.regdate, GROUP_CONCAT(f.file_name) AS file_name
+            FROM 
+                boards AS b 
+            LEFT JOIN 
+                files AS f ON b.id = f.b_id
+            WHERE 
+                b.id = ?
+            GROUP BY 
+                b.id;
+            `;
         let params = [req.params.id]
         let result = await db.query({ sql, params })
         for (let i = 0; i < result.rows.length; i++) {

@@ -1,17 +1,19 @@
 <template>
-  <div style="margin-bottom: 20px">
+  <div style="margin-bottom: 20px" >
     <v-card>
       <v-img />
       <v-card-title>
         <h4>
-          <nuxt-link :to="'/board/' + board.id">{{board.content}}</nuxt-link>
+          <nuxt-link  :to="'/board/' + board.id">{{getContent}}</nuxt-link>
         </h4>
         <!-- <div v-for="image_url in board.imege_url" :key="image_url" style="display: inline-block"> -->
         <!-- </div> -->
       </v-card-title>
       <v-card-text>
-        <div v-for="board in boards" :key="board" style="display: inline-block">
-            <img v-if="board.file_name" :src="'/uploads/' + board.file_name" ale="image" />
+        <div style="display: inline-block">
+            <div v-for="img in getImageList" :key="img">
+                <img :src="'/uploads/' + img" />
+            </div>
         </div>
         <div>
           <div>작성자 : {{board.writer}}</div>
@@ -42,6 +44,22 @@
       return {
         
       };
+    },
+    computed:{
+      getContent(){
+        if(this.board.content){
+          return this.board.content
+        }else{
+          return "제목 없음"
+        }
+      },
+      getImageList(){
+        if(this.board.file_name != null){
+          return this.board.file_name.split(',')
+        }else{
+          return []
+        }
+      }
     },
     methods: {
       onRemovePost() {

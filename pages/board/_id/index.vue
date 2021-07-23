@@ -4,39 +4,10 @@
         <div v-if="board">
             <PostCard :board="board"/>
         </div>
-    <!-- <div v-if="board">
-    <v-card>
-      <v-img />
-      <v-card-title>
-        <h4>
-          {{board.content}}
-        </h4>
-      </v-card-title>
-      <v-card-text>
-        <div>
-          <div>작성자 : {{board.writer}}</div>
+        <div v-else>
+            해당하는 아이디의 게시물이 없습니다.
+            <v-btn @click="toTheBack">Back</v-btn>
         </div>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn text color="orange">
-          <v-icon>mdi-twitter-retweet</v-icon>
-        </v-btn>
-        <v-btn text color="orange">
-          <v-icon>mdi-heart-outline</v-icon>
-        </v-btn>
-        <v-btn text color="orange">
-          <v-icon>mdi-comment-outline</v-icon>
-        </v-btn>
-        <v-btn text color="orange" @click="onEditPost">수정</v-btn>
-        <v-btn text color="red" @click="onRemovePost">삭제</v-btn>
-        <div>{{board.regdate}}</div>
-      </v-card-actions>
-    </v-card>
-  </div> -->
-    <div v-else>
-        해당하는 아이디의 게시물이 없습니다.
-    <v-btn @click="toTheBack">Back</v-btn>
-    </div>
   </v-card>
  </v-container>
 </template>
@@ -50,7 +21,6 @@ export default {
                 content: '',
                 writer: '',
             },
-            id:'',
         };
     },
     methods: {

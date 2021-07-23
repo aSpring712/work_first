@@ -1,5 +1,6 @@
 <template>
  <v-container>
+
     <v-card style="margin-bottom: 20px">
         <v-container v-if="board">
             <v-form ref="form" @submit.prevent="onSubmitForm">
@@ -11,7 +12,7 @@
                 />
                 
             <div v-for="b in board" :key="b">
-                <img v-if="b" :src="'/uploads/'+b" />
+                <img :src="'/uploads/' + b.file_name" />
                 <!-- <button @click="onRemoveImageIndex(u)" type="button">제거</button> -->
             </div>
                 
@@ -35,9 +36,7 @@ export default {
                 id:'',
                 content: '',
                 writer: '',
-                img_name: null,
-            },
-            id:'',
+            }
         };
     },
     methods: {
@@ -74,9 +73,19 @@ export default {
         this.$axios.get('board/' + this.id).then((res) => {
             console.log(res)
             if(res.data.board) {
-                this.board = res.data.board[0]
+                this.board = res.data.board
             }
         });
+    },
+    computed: {
+        getImageList() {
+            if(this.board.file_name != null) {
+                return this.board.file_name.split(',')
+                // console.log(this.board.file_name.split(','))
+            } else {
+                return []
+            }
+        }
     }
 }
 </script>
